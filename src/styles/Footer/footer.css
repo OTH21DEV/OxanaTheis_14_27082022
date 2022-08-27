@@ -1,0 +1,14 @@
+/*  border-top: 2px solid rgb(220, 223, 218);*/
+/*   border-top: 2px solid #ccd5a9;*/
+.footer{
+    border-top: 2px solid #ccd5a9;
+    height:80px;
+    position: absolute;
+    bottom:0;
+    width:100%;
+}
+
+.footer p{
+    font-size:0.7em;
+    font-weight: 500;
+}

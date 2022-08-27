@@ -1,0 +1,13 @@
+.header {
+    display:flex;
+    align-items: center;
+  justify-content: center;
+  background-color: rgb(225, 235, 217);
+  border-bottom: 2px solid rgb(225, 235, 217);
+  box-shadow: -2px -9px 6px 7px;
+
+}
+.header img{
+    width:80px;
+    height:80px
+}
