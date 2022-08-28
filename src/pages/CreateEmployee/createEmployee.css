@@ -1,0 +1,27 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.wrapper-first-name {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+label {
+  width: 60%;
+  text-align: left;
+  padding-bottom: 5px;
+}
+
+.wrapper-first-name input {
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  height: 40px;
+}
+.test {
+  display: flex;
+  flex-direction: column;
+}
