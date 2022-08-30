@@ -19,7 +19,7 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  height: 75px;
+  height: 65px;
 }
 label {
   width: 60%;
@@ -35,7 +35,7 @@ label {
   width: 60%;
   height: 20px;
   border:none;
-  border-bottom:2px solid #4F5C1C;
+  border-bottom:2px solid  #4F5C1C;
   background-color:  rgb(240, 249, 234);
 }
 .wrapper-input p {
@@ -55,3 +55,16 @@ label {
   
 
     
+.wrapper-dropdown{
+
+    display:flex;
+    flex-direction: column;
+   justify-content: center;
+}
+.wrapper-dropdown p{
+  
+    text-align: left;
+      display: flex;
+margin-bottom:0;
+    justify-content: center;
+}
