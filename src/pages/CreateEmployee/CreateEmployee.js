@@ -26,31 +26,36 @@ const CreateEmployee = () => {
     <div>
       <Header />
       <h2>Create Employee</h2>
+      <div className="test">
       <form className='form'onSubmit={handleSubmit(onSubmit)}>
         {/* First Name */}
         
-        <div className="wrapper-first-name">
+        <div className="wrapper-input">
         <label htmlFor="first-name">First Name</label>
-        <input className="first-name" {...register("firstName", { required: "This is required", minLength: { value: 4, message: "Min length is 4 characters" } })} />
+        <input className="first-name" {...register("firstName", { required: "This field is required", minLength: { value: 4, message: "Min length is 4 characters" } })} />
         <p>{errors.firstName?.message}</p>
      
 </div>
         {/* Last Name */}
+            
+        <div className="wrapper-input">
         <label htmlFor="last-name">Last Name</label>
-        <input className="last-name" {...register("lastName", { required: "This is required", minLength: { value: 4, message: "Min length is 4 characters" } })} />
+        <input className="last-name" {...register("lastName", { required: "This field is required", minLength: { value: 4, message: "Min length is 4 characters" } })} />
         <p>{errors.lastName?.message}</p>
-
+        </div>
         <h3>Address</h3>
         {/* Street*/}
+        <div className="wrapper-input">
         <label htmlFor="street-name">Street</label>
-        <input className="street-name" {...register("streetName", { required: "This is required", minLength: { value: 4, message: "Min length is 4 characters" } })} />
+        <input className="street-name" {...register("streetName", { required: "This field is required", minLength: { value: 4, message: "Min length is 4 characters" } })} />
         <p>{errors.streetName?.message}</p>
-
+        </div>
         {/* City*/}
+        <div className="wrapper-input">
         <label htmlFor="city-name">City</label>
         <input className="city-name" {...register("cityName", { required: "This is required", minLength: { value: 4, message: "Min length is 4 characters" } })} />
         <p>{errors.cityName?.message}</p>
-
+        </div>
         {/* State*/}
         <Dropdown states={states} />
 
@@ -61,6 +66,7 @@ const CreateEmployee = () => {
 
         <input type="submit" />
       </form>
+      </div>
       <Footer />
     </div>
   );
