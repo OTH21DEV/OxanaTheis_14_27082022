@@ -5,10 +5,13 @@ import Footer from "../../components/Footer/Footer";
 import { states } from "../../data/states";
 import { departments } from "../../data/departments";
 import { useForm } from "react-hook-form";
-import LabelForm from "../../components/Form/LabelForm";
-import InputForm from "../../components/Form/InputForm";
-import ErrorForm from "../../components/Form/ErrorForm";
+
 import "../CreateEmployee/createEmployee.css";
+import test from "../../assets/test.svg";
+
+if (!localStorage.data || localStorage.length === 1) {
+  console.log("error");
+}
 
 const CreateEmployee = () => {
   const {
@@ -18,18 +21,28 @@ const CreateEmployee = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   console.log(watch("example"));
   //<ErrorForm fieldError={errors.lastName} />
   console.log(errors);
+
+  ///
+
+  const listObject = { states: ["Answer", "another ans"], departments: ["ans2"] };
+
   return (
     <div>
       <Header />
-      <h2>Create Employee</h2>
       <div className="test">
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
           {/* First Name */}
-
+          <div className="image">
+            <h2>Create Employee</h2>
+            <img src={test} alt=""></img>
+          </div>
           <div className="wrapper-input">
             <label htmlFor="first-name">First Name</label>
             <input className="first-name" {...register("firstName", { required: "This field is required", minLength: { value: 4, message: "Min length is 4 characters" } })} />
@@ -63,16 +76,25 @@ const CreateEmployee = () => {
           </div>
           {/* State*/}
           <div className="wrapper-dropdown">
-            <p>States</p>
+            <div className="title">
+              {" "}
+              <p style={{ marginTop: "0" }}>States</p>
+            </div>
             <Dropdown states={states} />
           </div>
 
           {/* Department*/}
           <div className="wrapper-dropdown">
-            <p>Department</p>
+            <div className="title">
+              {" "}
+              <p>Department</p>
+            </div>
             <Dropdown states={departments} />
           </div>
-          <input type="submit" />
+
+          <div className="wrapper-btn">
+            <input type="submit" className="btn" />
+          </div>
         </form>
       </div>
       <Footer />

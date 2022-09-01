@@ -2,10 +2,13 @@
 /*   border-top: 2px solid #ccd5a9;*/
 .footer{
     border-top: 2px solid #ccd5a9;
-    height:10vh;
+    height:80px;
     position: absolute;
-    bottom:0;
+   
     width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .footer p{
