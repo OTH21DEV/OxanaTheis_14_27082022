@@ -4,7 +4,8 @@ import Dropdown from "../../components/Dropdown/Dropdown";
 import Footer from "../../components/Footer/Footer";
 import { states } from "../../data/states";
 import { departments } from "../../data/departments";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
+import Select from "react-select";
 
 import "../CreateEmployee/createEmployee.css";
 import test from "../../assets/test.svg";
@@ -15,6 +16,7 @@ if (!localStorage.data || localStorage.length === 1) {
 
 const CreateEmployee = () => {
   const {
+    control,
     register,
     handleSubmit,
     watch,
@@ -31,7 +33,7 @@ const CreateEmployee = () => {
 
   ///
 
-  const listObject = { states: ["Answer", "another ans"], departments: ["ans2"] };
+
 
   return (
     <div>
@@ -74,22 +76,41 @@ const CreateEmployee = () => {
             <input className="zip" {...register("zipCode", { required: "This is required", minLength: { value: 4, message: "Min length is 4 characters" } })} />
             <p>{errors.zipCode?.message}</p>
           </div>
-          {/* State*/}
+
+          {/* State v2*/}
           <div className="wrapper-dropdown">
             <div className="title">
               {" "}
-              <p style={{ marginTop: "0" }}>States</p>
+              <p>States</p>
             </div>
-            <Dropdown states={states} />
+            <Controller
+              name="selectStates"
+              control={control}
+              defaultValue=""
+              rules={{ required: "This is required", minLength: { value: 4, message: "Min length is 4 characters" } }}
+              render={({ field }) => <Dropdown states={states} {...field} label="select" />}
+            />
+            <div className="error">
+              <span>{errors.selectStates?.message}</span>
+            </div>
           </div>
 
-          {/* Department*/}
+          {/* Department v2*/}
           <div className="wrapper-dropdown">
             <div className="title">
               {" "}
               <p>Department</p>
             </div>
-            <Dropdown states={departments} />
+            <Controller
+              name="selectDepartment"
+              control={control}
+              defaultValue=""
+              rules={{ required: "This is required", minLength: { message: "Min length is 4 characters" ,test:'ok'} }}
+              render={({ field }) => <Dropdown states={departments} {...field} label="selectDepartment" />}
+            />
+            <div className="error">
+              <span>{errors.selectDepartment?.message}</span>
+            </div>
           </div>
 
           <div className="wrapper-btn">
