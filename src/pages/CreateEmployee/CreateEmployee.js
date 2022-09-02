@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../components/Header/Header";
-import Dropdown from "../../components/Dropdown/Dropdown";
+//import Dropdown from "../../components/Dropdown/Dropdown";
 import Footer from "../../components/Footer/Footer";
 import { states } from "../../data/states";
 import { departments } from "../../data/departments";
@@ -8,11 +8,11 @@ import { useForm, Controller } from "react-hook-form";
 import Select from "react-select";
 
 import "../CreateEmployee/createEmployee.css";
-import test from "../../assets/test.svg";
+import icon_form from "../../assets/test.svg";
+//import Date from "../../components/Date/Date";
+import DatePicker from "react-datepicker";
 
-if (!localStorage.data || localStorage.length === 1) {
-  console.log("error");
-}
+import "react-datepicker/dist/react-datepicker.css";
 
 const CreateEmployee = () => {
   const {
@@ -31,9 +31,7 @@ const CreateEmployee = () => {
   //<ErrorForm fieldError={errors.lastName} />
   console.log(errors);
 
-  ///
-
-
+  const [startDate, setStartDate] = useState(null);
 
   return (
     <div>
@@ -43,7 +41,7 @@ const CreateEmployee = () => {
           {/* First Name */}
           <div className="image">
             <h2>Create Employee</h2>
-            <img src={test} alt=""></img>
+            <img src={icon_form} alt=""></img>
           </div>
           <div className="wrapper-input">
             <label htmlFor="first-name">First Name</label>
@@ -57,7 +55,43 @@ const CreateEmployee = () => {
             <input className="last-name" {...register("lastName", { required: "This field is required", minLength: { value: 4, message: "Min length is 4 characters" } })} />
             <p>{errors.lastName?.message}</p>
           </div>
+
+          {/* Date of Birth */}
+          <div className="wrapper-dropdown">
+            <div className="title">
+              {" "}
+              <p>Date of Birth</p>
+            </div>
+          <Controller
+            name="selectDateBirth"
+            control={control}
+            defaultValue=""
+            rules={{ required: "This is required" }}
+            render={({ field }) => (
+              <DatePicker
+                placeholderText="Please select "
+                onChange={(date) => field.onChange(date)}
+                selected={field.value}
+                showYearDropdown
+                dateFormatCalendar="MMMM"
+                yearDropdownItemNumber={15}
+                dateFormat="dd/MM/yyyy"
+                filterDate={(d) => {
+                  return new Date() > d;
+                }}
+                scrollableYearDropdown
+                label="Text field"
+              />
+            )}
+          />
+          <div className="error">
+            <span>{errors.selectDateBirth?.message}</span>
+          </div>
+
+        </div>
+          {/* Title*/}
           <h3>Address</h3>
+
           {/* Street*/}
           <div className="wrapper-input">
             <label htmlFor="street-name">Street</label>
@@ -77,7 +111,7 @@ const CreateEmployee = () => {
             <p>{errors.zipCode?.message}</p>
           </div>
 
-          {/* State v2*/}
+          {/* State*/}
           <div className="wrapper-dropdown">
             <div className="title">
               {" "}
@@ -88,14 +122,98 @@ const CreateEmployee = () => {
               control={control}
               defaultValue=""
               rules={{ required: "This is required", minLength: { value: 4, message: "Min length is 4 characters" } }}
-              render={({ field }) => <Dropdown states={states} {...field} label="select" />}
+              render={({ field }) => (
+                <Select
+                  menuPortalTarget={document.querySelector("body")}
+                  placeholder="Please select"
+                  styles={{
+                    placeholder: () => ({
+                      textAlign: "left",
+                      opacity: "0.6",
+                      marginTop: "30px",
+                    }),
+
+                    valueContainer: () => ({
+                      maxHeight: "80px",
+                      display: "flex",
+                    }),
+
+                    indicatorSeparator: () => ({
+                      border: "none",
+                    }),
+                    dropdownIndicator: (provided) => ({
+                      ...provided,
+                      "&:hover": {
+                        color: "#4F5C1C",
+                      },
+                      color: "#4F5C1C",
+                      marginTop: "30px",
+                    }),
+                    singleValue: () => ({
+                      textAlign: "left",
+                      marginTop: "30px",
+                    }),
+                    container: () => ({
+                      display: "flex",
+                      justifyContent: "center",
+                    }),
+
+                    control: (provided, state) => ({
+                      ...provided,
+                      "&:hover": {
+                        borderColor: "#4F5C1C",
+                      },
+                      boxShadow: "none",
+                      border: "none",
+                      backgroundColor: "",
+                      borderBottom: "2px",
+                      borderBottomStyle: "solid",
+                      borderImage: "linear-gradient(45deg, #3F3D56,#dbbc00) 1",
+                      width: "60%",
+                      borderRadius: "none",
+                      minHeight: "32px",
+                      position: "relative",
+                      marginTop: "-20px",
+                    }),
+                    menu: (provided, state) => ({
+                      ...provided,
+                      border: "none",
+                      boxShadow: "none",
+                    }),
+                    menuList: (provided, state) => ({
+                      ...provided,
+                      "::-webkit-scrollbar": {
+                        width: "4px",
+                        height: "0px",
+                      },
+                      "::-webkit-scrollbar-track": {
+                        background: "#f1f1f1",
+                      },
+                      "::-webkit-scrollbar-thumb": {
+                        background: "#888",
+                      },
+                      "::-webkit-scrollbar-thumb:hover": {
+                        background: "#555",
+                      },
+                    }),
+                    option: (provided, state) => ({
+                      ...provided,
+                      backgroundColor: state.isFocused && "#9BC200",
+                      color: state.isFocused && "white",
+                    }),
+                  }}
+                  options={states}
+                  {...field}
+                  label="Text field"
+                />
+              )}
             />
             <div className="error">
               <span>{errors.selectStates?.message}</span>
             </div>
           </div>
 
-          {/* Department v2*/}
+          {/* Department*/}
           <div className="wrapper-dropdown">
             <div className="title">
               {" "}
@@ -105,10 +223,95 @@ const CreateEmployee = () => {
               name="selectDepartment"
               control={control}
               defaultValue=""
-              rules={{ required: "This is required", minLength: { message: "Min length is 4 characters" ,test:'ok'} }}
-              render={({ field }) => <Dropdown states={departments} {...field} label="selectDepartment" />}
+              rules={{ required: "This is required", minLength: { message: "Min length is 4 characters", test: "ok" } }}
+              render={({ field }) => (
+                <Select
+                  menuPortalTarget={document.querySelector("body")}
+                  placeholder="Please select"
+                  styles={{
+                    placeholder: () => ({
+                      textAlign: "left",
+                      opacity: "0.6",
+                      marginTop: "30px",
+                    }),
+
+                    valueContainer: () => ({
+                      maxHeight: "80px",
+                      display: "flex",
+                    }),
+
+                    indicatorSeparator: () => ({
+                      border: "none",
+                    }),
+                    dropdownIndicator: (provided) => ({
+                      ...provided,
+                      "&:hover": {
+                        color: "#4F5C1C",
+                      },
+                      color: "#4F5C1C",
+                      marginTop: "30px",
+                    }),
+                    singleValue: () => ({
+                      textAlign: "left",
+                      marginTop: "30px",
+                    }),
+                    container: () => ({
+                      display: "flex",
+                      justifyContent: "center",
+                    }),
+
+                    control: (provided, state) => ({
+                      ...provided,
+                      "&:hover": {
+                        borderColor: "#4F5C1C",
+                      },
+                      boxShadow: "none",
+                      border: "none",
+                      backgroundColor: "",
+                      borderBottom: "2px",
+                      borderBottomStyle: "solid",
+                      borderImage: "linear-gradient(45deg, #3F3D56,#dbbc00) 1",
+                      width: "60%",
+                      borderRadius: "none",
+                      minHeight: "32px",
+                      position: "relative",
+                      marginTop: "-20px",
+                    }),
+                    menu: (provided, state) => ({
+                      ...provided,
+                      border: "none",
+                      boxShadow: "none",
+                    }),
+                    menuList: (provided, state) => ({
+                      ...provided,
+                      "::-webkit-scrollbar": {
+                        width: "4px",
+                        height: "0px",
+                      },
+                      "::-webkit-scrollbar-track": {
+                        background: "#f1f1f1",
+                      },
+                      "::-webkit-scrollbar-thumb": {
+                        background: "#888",
+                      },
+                      "::-webkit-scrollbar-thumb:hover": {
+                        background: "#555",
+                      },
+                    }),
+                    option: (provided, state) => ({
+                      ...provided,
+                      backgroundColor: state.isFocused && "#9BC200",
+                      color: state.isFocused && "white",
+                    }),
+                  }}
+                  options={departments}
+                  {...field}
+                  label="Text field"
+                />
+              )}
             />
             <div className="error">
+              {" "}
               <span>{errors.selectDepartment?.message}</span>
             </div>
           </div>

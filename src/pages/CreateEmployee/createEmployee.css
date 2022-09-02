@@ -36,12 +36,13 @@ label {
   width: 60%;
   height: 20px;
   border: none;
-  border-bottom: 2px ;
+  border-bottom: 2px;
   border-bottom-style: solid;
-  border-image:linear-gradient(45deg, #3F3D56,#dbbc00) 1;
+  border-image: linear-gradient(45deg, #3f3d56, #dbbc00) 1;
   background-color: rgb(240, 249, 234);
 }
-.wrapper-input p, .wrapper-dropdown span {
+.wrapper-input p,
+.wrapper-dropdown span {
   margin-top: 0;
   text-align: left;
   width: 60%;
@@ -59,26 +60,23 @@ label {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
- 
 }
 .wrapper-dropdown p {
-    width: 60%;
-    text-align: left;
-    padding-bottom: 5px;
-    color: #1e1e1e;
-    font-weight: 500;
-    margin-bottom:0;
-  
+  width: 60%;
+  text-align: left;
+  padding-bottom: 5px;
+  color: #1e1e1e;
+  font-weight: 500;
+  margin-bottom: 0;
 }
 
-.error{
-  display:flex;
+.error {
+  display: flex;
   justify-content: center;
 }
-.title{
-    display:flex;
-    justify-content: center;
+.title {
+  display: flex;
+  justify-content: center;
 }
 .image {
   background-color: #1e1e1e;
@@ -114,4 +112,49 @@ label {
 
 .btn:hover {
   filter: brightness(115%);
+}
+
+/*Style Datepicker*/
+
+/*input*/
+.react-datepicker__input-container input {
+  border: none;
+  background-color: rgb(240, 249, 234);
+  border-bottom: 2px;
+  border-bottom-style: solid;
+  border-image: linear-gradient(45deg, #3f3d56, #dbbc00) 1;
+  width: 60%;
+}
+
+/*header*/
+.react-datepicker__month-container .react-datepicker__header {
+  background-color: #dbbc00;
+}
+/*month*/
+.react-datepicker__current-month.react-datepicker__current-month--hasYearDropdown {
+  color: #1e1e1e;
+}
+
+/*arrow next previous*/
+.react-datepicker__navigation-icon.react-datepicker__navigation-icon--next::before,
+.react-datepicker__navigation-icon.react-datepicker__navigation-icon--previous::before,
+.react-datepicker__year-read-view {
+  border-color: #1e1e1e;
+}
+/*arrow down*/
+.react-datepicker__year-read-view .react-datepicker__year-read-view--down-arrow {
+  border-color: #1e1e1e;
+  font-size:0.8em;
+  /*
+  background: url(../images/rightArrow.png) no-repeat;
+  width: 15px;
+  height: 15px;
+  border: none;
+  */
+}
+/*year*/
+.wrapper-dropdown span {
+  color: #1e1e1e;
+  font-weight: bold;
+
 }
