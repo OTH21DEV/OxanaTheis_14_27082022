@@ -42,13 +42,13 @@ label {
   background-color: rgb(240, 249, 234);
 }
 .wrapper-input p,
-.wrapper-dropdown span {
+.wrapper-dropdown h4 {
   margin-top: 0;
   text-align: left;
   width: 60%;
   font-size: 0.8em;
   color: #db2a16;
-  font-weight: 500;
+  font-weight: bold;
 }
 .test {
   display: flex;
@@ -60,6 +60,7 @@ label {
   display: flex;
   flex-direction: column;
   justify-content: center;
+
 }
 .wrapper-dropdown p {
   width: 60%;
@@ -144,9 +145,10 @@ label {
 /*arrow down*/
 .react-datepicker__year-read-view .react-datepicker__year-read-view--down-arrow {
   border-color: #1e1e1e;
-  font-size:0.8em;
+  font-size: 0.8em;
+  right: -23px;
   /*
-  background: url(../images/rightArrow.png) no-repeat;
+  background: url(../../assets/arrow_down.svg) no-repeat;
   width: 15px;
   height: 15px;
   border: none;
@@ -156,5 +158,49 @@ label {
 .wrapper-dropdown span {
   color: #1e1e1e;
   font-weight: bold;
+  width: 40%;
+  font-size: 0.9em;
+}
+ 
+/*selected date*/
+.react-datepicker__week .react-datepicker__day.react-datepicker__day--selected{
+  background-color: #dbbc00;
+}
 
+/*scroll bar*/
+
+.react-datepicker__year-dropdown.react-datepicker__year-dropdown--scrollable .react-datepicker__year-option:hover,
+.react-datepicker__month-option:hover,
+.react-datepicker__month-year-option:hover {
+  background-color: #9bc200;
+}
+
+.react-datepicker__year-dropdown.react-datepicker__year-dropdown--scrollable {
+  background-color: white;
+}
+
+.react-datepicker__year-dropdown.react-datepicker__year-dropdown--scrollable::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.react-datepicker__year-dropdown.react-datepicker__year-dropdown--scrollable::-webkit-scrollbar-thumb {
+  background: #888;
+}
+.react-datepicker__year-dropdown.react-datepicker__year-dropdown--scrollable::-webkit-scrollbar-hover {
+  background: #555;
+}
+.react-datepicker__year-dropdown.react-datepicker__year-dropdown--scrollable::-webkit-scrollbar {
+  width: 4px;
+  height: 0px;
+}
+
+.wrapper-dropdown img{
+  width:15px;
+  height:15px;
+  position: relative;
+  right:7em;
+}
+
+input:-webkit-autofill{
+  -webkit-box-shadow: 0 0 0 30px rgb(240, 249, 234)inset !important
 }
