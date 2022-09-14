@@ -50,7 +50,7 @@ label {
   color: #db2a16;
   font-weight: bold;
 }
-.test {
+.wrapper-form{
   display: flex;
   padding: 40px 0;
   justify-content: center;
