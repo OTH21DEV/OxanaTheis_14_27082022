@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background: linear-gradient(to bottom right,rgb(240, 249, 234), #a5b174);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+.modal-icon img {
+  height: 112px;
+  width: 112px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: -30px;
+  animation: fadeIn 1.1s backwards;
+  animation-delay: 0.9s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+.modal {
+  background-color: rgb(240, 249, 234);
+  width: 310px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+}
+
+.wrapper-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  animation: show 1.1s;
+}
+@keyframes show {
+  0% {
+    transform: translateY(-1000px);
+  }
+
+  100% {
+    translatey: 1;
+  }
+}
+.modal__title {
+  color: #1e1e1e;
+  margin-top: 80px;
+}
+
+.wrapper-btn {
+  margin-top: 30px;
+  align-items: end;
+}
+.btn {
+  width: 120px;
+  height: 40px;
+  background-color: #dbbc00;
+  border: none;
+  border-radius: 5px;
+  color: #1e1e1e;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.btn:hover {
+  filter: brightness(115%);
+}
+
+.modal-close-icon {
+  align-self: flex-end;
+  margin-top: -80px;
+  cursor: pointer;
+}

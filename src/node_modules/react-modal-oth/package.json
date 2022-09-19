@@ -1,0 +1,98 @@
+{
+  "_from": "react-modal-oth",
+  "_id": "react-modal-oth@0.1.4",
+  "_inBundle": false,
+  "_integrity": "sha512-okrfbvn3FU0SqD9d7ou8Hr1CZ3pFPTwlJFMyLy+CtKW358xp6zwwbNsvi/GxuvY3GCeW9g5e3TbmP9/Au2TPYw==",
+  "_location": "/react-modal-oth",
+  "_phantomChildren": {
+    "@babel/runtime": "7.18.9",
+    "@testing-library/dom": "8.17.1",
+    "@types/react-dom": "18.0.6"
+  },
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "react-modal-oth",
+    "name": "react-modal-oth",
+    "escapedName": "react-modal-oth",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-modal-oth/-/react-modal-oth-0.1.4.tgz",
+  "_shasum": "0f8f6ac2a0413d14db0fafb9287bbed43ac252f7",
+  "_spec": "react-modal-oth",
+  "_where": "C:\\Users\\Oxana\\Documents\\OPENCLASS\\projets\\p14_wealth_health_hrnet",
+  "author": {
+    "name": "Oxana Theis"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/OTH21DEV/OxanaTheis_14_15092022_modal/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "deprecated": false,
+  "description": "Plugin allowing to display an alert ",
+  "devDependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.19.1",
+    "@babel/preset-env": "^7.19.1",
+    "@babel/preset-react": "^7.18.6"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "homepage": "https://github.com/OTH21DEV/OxanaTheis_14_15092022_modal#readme",
+  "keywords": [
+    "react",
+    "modal",
+    "components"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "name": "react-modal-oth",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OTH21DEV/OxanaTheis_14_15092022_modal.git"
+  },
+  "scripts": {
+    "build": "rm -rf dist && set NODE_ENV=production && babel src/lib --out-dir dist --copy-files",
+    "eject": "react-scripts eject",
+    "start": "react-scripts start",
+    "test": "react-scripts test"
+  },
+  "version": "0.1.4"
+}
