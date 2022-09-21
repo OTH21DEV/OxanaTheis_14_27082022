@@ -15,7 +15,7 @@ const Header = () => {
         <h1>HRnet</h1>
         <div className="header-nav">
         <NavLink className= {({ isActive }) => isActive? "active": 'nav-links__home'} end to="/">Create Employee</NavLink> 
-      <NavLink className= {({ isActive }) => isActive? "active": 'nav-links__all'} to="/allemployees">All employees</NavLink>
+      <NavLink className= {({ isActive }) => isActive? "active": 'nav-links__all'} to="/allemployees">All Employees</NavLink>
         </div>
       </div>
     </>

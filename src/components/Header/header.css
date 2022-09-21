@@ -18,8 +18,8 @@
  
   text-decoration: none;
   color: #5a6e0a;
-  font-weight: bold;
-  margin-right:10px;
+  font-weight: 600;
+  margin-right:20px;
 }
 
 .active {
@@ -28,14 +28,13 @@
   color: #5a6e0a;
   font-weight: bold;
   text-decoration: none;
-  margin-right:10px;
+  margin-right:20px;
 }
 
 
 .header-nav{
 position:absolute;
 right:0;
-
 }
 
 

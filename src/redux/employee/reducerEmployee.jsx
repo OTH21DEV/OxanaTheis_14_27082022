@@ -14,6 +14,7 @@ const helperAddEmployee = (action) => {
     street: action.payload.streetName,
     city: action.payload.cityName,
     zipCode: action.payload.zipCode,
+    state: action.payload.selectStates
   };
 };
 
