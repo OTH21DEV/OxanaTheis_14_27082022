@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import Header from "../../components/Header/Header";
 import Table from "../../components/Table/Table";
 import Footer from "../../components/Footer/Footer";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const CurrentEmployees = () => {
   const state = useSelector((state) => state.employeeData);
@@ -10,13 +10,13 @@ const CurrentEmployees = () => {
 
   const columns = useMemo(() => [
     {
-      Header: "Identity",
+      Header: "IDENTITY",
       // First group columns
       columns: [
         {
           Header: "First name",
           accessor: "firstName",
-          cell: (info) => console.log(info),
+          
         },
         {
           Header: "Last Name",
@@ -29,7 +29,7 @@ const CurrentEmployees = () => {
       ],
     },
     {
-      Header: "Address",
+      Header: "ADDRESS",
 
       columns: [
         {
@@ -52,7 +52,7 @@ const CurrentEmployees = () => {
       ],
     },
     {
-      Header: "Additional information",
+      Header: "ADDITIONAL INFORMATION",
 
       columns: [
         {
