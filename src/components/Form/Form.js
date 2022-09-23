@@ -12,6 +12,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Modal from "react-modal-oth";
 import icon from "react-modal-oth/dist/assets/icon.svg";
 import close_icon from "react-modal-oth/dist/assets/close.svg";
+import moment from "moment";
 
 const Form = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -28,15 +29,16 @@ const Form = () => {
   const state = useSelector((state) => console.log(state));
   const dispatch = useDispatch();
 
-  //add employee 
+  //add employee
   const onSubmit = (data) => {
     if (data) {
       dispatch(addEmployee(data));
       setModalIsOpen(true);
     }
   };
-
+  //  return new Date() > d;
   //if modal is open set as true , modal is shown, otherwise back to form
+
   return (
     <>
       {" "}

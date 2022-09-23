@@ -1,4 +1,5 @@
 import { ADD_EMPLOYEE } from "./type";
+import moment from "moment";
 
 const initialState = {
   employees: [],
@@ -8,13 +9,13 @@ const helperAddEmployee = (action) => {
   return {
     firstName: action.payload.firstName,
     lastName: action.payload.lastName,
-    dateOfBirth: action.payload.selectDateBirth,
-    startDate: action.payload.selectStartDate,
+    dateOfBirth: moment(action.payload.selectDateBirth).format("DD/MM/yyyy"),
+    startDate: moment(action.payload.selectStartDate).format("DD/MM/yyyy"),
     department: action.payload.selectDepartment,
     street: action.payload.streetName,
     city: action.payload.cityName,
     zipCode: action.payload.zipCode,
-    state: action.payload.selectStates
+    state: action.payload.selectStates,
   };
 };
 
