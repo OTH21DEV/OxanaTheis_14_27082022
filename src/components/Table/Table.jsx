@@ -36,6 +36,7 @@ function Table({ columns, data }) {
   return (
     <>
       <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+      <div style={{overflowX: "auto"}}>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -62,20 +63,23 @@ function Table({ columns, data }) {
           })}
         </tbody>
       </table>
-
+      </div>
       <div className="wrapper-pagination">
         {/* displays the number of current page */}
+
+<div>
+
         <span>
           Page{" "}
           <strong>
             {pageIndex + 1} of {pageOptions.length}
           </strong>{" "}
         </span>
-
+    
         {/* displays the input to set the number of page to go */}
 
         <span>
-          | Go to page:{" "}
+       |  Go to page:{" "}
           <input
             type="number"
             defaultValue={pageIndex + 1}
@@ -86,7 +90,8 @@ function Table({ columns, data }) {
             style={{ width: "50px" }}
           ></input>
         </span>
-
+    
+        
         {/* displays the select with number of rows per page  */}
 
         <select value={pageSize} onChange={(e) => setPageSize(Number(e.target.value))}>
@@ -96,6 +101,8 @@ function Table({ columns, data }) {
             </option>
           ))}
         </select>
+        </div>
+
 
         {/* displays the btn to go to the first page */}
         <button className='btn-skipfirst'onClick={() => gotoPage(0)} disabled={!canPreviousPage}>

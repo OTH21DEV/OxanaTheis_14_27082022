@@ -1,25 +1,22 @@
 .header {
-    display:flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
   justify-content: center;
   background-color: rgb(225, 235, 217);
   border-bottom: 2px solid rgb(225, 235, 217);
   box-shadow: -2px -9px 6px 7px;
-
 }
-.header img{
-    width:80px;
-    height:80px
+.header img {
+  width: 80px;
+  height: 80px;
 }
-
 
 .nav-links__home,
 .nav-links__all {
- 
   text-decoration: none;
   color: #5a6e0a;
   font-weight: 600;
-  margin-right:20px;
+  margin-right: 20px;
 }
 
 .active {
@@ -28,13 +25,23 @@
   color: #5a6e0a;
   font-weight: bold;
   text-decoration: none;
-  margin-right:20px;
+  margin-right: 20px;
 }
 
-
-.header-nav{
-position:absolute;
-right:0;
+.header-nav {
+  position: absolute;
+  right: 0;
 }
 
-
+@media all and (min-width: 375px) and (max-width: 800px) {
+  .header {
+    justify-content: unset;
+  }
+}
+@media all and (min-width: 375px) and (max-width: 600px) {
+  .header-nav {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+}
