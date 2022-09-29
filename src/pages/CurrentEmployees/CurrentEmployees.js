@@ -16,7 +16,6 @@ const CurrentEmployees = () => {
         {
           Header: "First name",
           accessor: "firstName",
-          
         },
         {
           Header: "Last Name",
@@ -40,7 +39,7 @@ const CurrentEmployees = () => {
           Header: "City",
           accessor: "city",
         },
-        
+
         {
           Header: "Street",
           accessor: "street",
