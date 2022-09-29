@@ -10,12 +10,11 @@ import propTypes from "prop-types";
  * Displays the calendar in the date birth and start date input fields
  * @param {String} title Title of the field
  * @param {String} name Name of the input field to control
- * @param {Object} control 
- * @param {Object} errors 
+ * @param {Object} control
+ * @param {Object} errors
  * @returns {JSX}
  */
 const Datepicker = ({ title, name, control, errors }) => {
- 
   return (
     <>
       <div className="wrapper-dropdown">

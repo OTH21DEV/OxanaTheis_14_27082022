@@ -16,7 +16,6 @@ import propTypes from "prop-types";
  * @returns {JSX}
  */
 const Dropdown = ({ title, name, control, errors, data }) => {
-
   return (
     <>
       <div className="wrapper-dropdown">

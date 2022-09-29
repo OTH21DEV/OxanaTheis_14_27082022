@@ -4,6 +4,7 @@ import Table from "../../components/Table/Table";
 import Footer from "../../components/Footer/Footer";
 import { useSelector } from "react-redux";
 
+
 const CurrentEmployees = () => {
   const state = useSelector((state) => state.employeeData);
   console.log(state);
