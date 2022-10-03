@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/OxanaTheis_14_27082022/static/css/main.73b08064.css",
+    "main.css": "/OxanaTheis_14_27082022/static/css/main.c8d398d5.css",
     "main.js": "/OxanaTheis_14_27082022/static/js/main.435c8c00.js",
     "static/js/787.70ec52c4.chunk.js": "/OxanaTheis_14_27082022/static/js/787.70ec52c4.chunk.js",
     "static/media/logo1.png": "/OxanaTheis_14_27082022/static/media/logo1.65c19beb467913b8e8d0.png",
@@ -8,12 +8,12 @@
     "static/media/test.svg": "/OxanaTheis_14_27082022/static/media/test.be392efd0e0637b491d9d25e1921dac1.svg",
     "index.html": "/OxanaTheis_14_27082022/index.html",
     "static/media/close.svg": "/OxanaTheis_14_27082022/static/media/close.aac73cf0d96d956a64823afe21da95f9.svg",
-    "main.73b08064.css.map": "/OxanaTheis_14_27082022/static/css/main.73b08064.css.map",
+    "main.c8d398d5.css.map": "/OxanaTheis_14_27082022/static/css/main.c8d398d5.css.map",
     "main.435c8c00.js.map": "/OxanaTheis_14_27082022/static/js/main.435c8c00.js.map",
     "787.70ec52c4.chunk.js.map": "/OxanaTheis_14_27082022/static/js/787.70ec52c4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.73b08064.css",
+    "static/css/main.c8d398d5.css",
     "static/js/main.435c8c00.js"
   ]
 }
