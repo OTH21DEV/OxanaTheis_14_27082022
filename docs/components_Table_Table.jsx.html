@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>components/Table/Table.jsx - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#CreateEmployee">CreateEmployee</a></li><li><a href="global.html#CurrentEmployees">CurrentEmployees</a></li><li><a href="global.html#Datepicker">Datepicker</a></li><li><a href="global.html#Dropdown">Dropdown</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#Form">Form</a></li><li><a href="global.html#GlobalFilter">GlobalFilter</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#helperAddEmployee">helperAddEmployee</a></li><li><a href="global.html#reducerAddEmployee">reducerAddEmployee</a></li><li><a href="global.html#Table">Table</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">components/Table/Table.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import GlobalFilter from "../GlobalFilter/GlobalFilter";
+import { useTable, useSortBy, usePagination, useGlobalFilter } from "react-table";
+import "./table.css";
+import propTypes from "prop-types";
+
+/**
+ * Displays the table of current employees
+ * @param {Object[]} data Data from form's inputs (state Redux)
+ * @param {String} data[].firstName First name of employee
+ * @param {String} data[].lastName Last name of employee
+ * @param {String} data[].streetName Street name of employee's address
+ * @param {String} data[].cityName City of employee's address
+ * @param {String} data[].zipCode Zip code of employee's address
+ * @param {String} data[].selectDateBirth Date of birth of employee
+ * @param {String} data[].selectStartDate Start day of employee
+ * @param {Object} data[].selectDepartment Department of employee
+ * @param {String} data[].selectDepartment.label Name of department
+ * @param {String} data[].selectDepartment.value Value of department
+ * @param {Object} data[].selectStates State of employee
+ * @param {String} data[].selectStates.label Name of state
+ * @param {String} data[].selectStates.value Value of state
+ * @param {Object[]} columns Name of form's columns
+ * @param {String} columns[].Header First group name header of form's columns
+ * @param {Object[]} columns[].columns Second group name header of form's columns
+ * @param {String} columns[].columns.Header Columns name of second group name header
+ * @param {String} columns[].columns.accessor
+ * @returns {JSX}
+ */
+function Table({ columns, data }) {
+  const {
+    getTableProps, // table props from react-table
+    getTableBodyProps, // table body props from react-table
+    headerGroups, // headerGroups, header groupings
+    page, // default value 10 rows
+    setPageSize, //recat-table function to change the defalut value of rows per page (need to do the distructure of pageSize from state.After  we add a select in jsx )
+    nextPage, //recat-table function - need to go to next page (need to add a btn with click event in jsx)
+    previousPage, //recat-table function - need to go to prev page (need to add a btn with click event in jsx)
+    canNextPage, //recat-table function - indicates if its possible  to go to next page (added in the btn property 'disabled')
+    canPreviousPage, //recat-table function - indicates if its possible  to go to prev page (added in the btn property 'disabled')
+    pageOptions, //recat-table function - indicates the number of pages and current page (need to do the distructure of pageIndex from state.After we add the span in jsx )
+    gotoPage, //recat-table function - allows to go to last or first page (need to add another btn in jsx)
+    pageCount,
+    prepareRow,
+    state,
+    setGlobalFilter,
+  } = useTable(
+    {
+      columns,
+      data,
+    },
+    useGlobalFilter,
+    useSortBy,
+    usePagination
+  );
+
+  const { globalFilter, pageIndex, pageSize } = state;
+
+  return (
+    &lt;>
+      &lt;GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+      &lt;div style={{ overflowX: "auto" }}>
+        &lt;table {...getTableProps()}>
+          &lt;thead>
+            {headerGroups.map((headerGroup) => (
+              &lt;tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  &lt;th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                    {column.render("Header")}
+                    &lt;span>{column.isSorted ? column.isSortedDesc ? &lt;i className="fas fa-angle-down">&lt;/i> : &lt;i className="fas fa-angle-up">&lt;/i> : ""}&lt;/span>
+                  &lt;/th>
+                ))}
+              &lt;/tr>
+            ))}
+          &lt;/thead>
+          &lt;tbody {...getTableBodyProps()}>
+            {page.map((row, i) => {
+              prepareRow(row);
+              return (
+                &lt;tr {...row.getRowProps()}>
+                  {row.cells.map((cell) => {
+                    return &lt;td {...cell.getCellProps()}>{cell.render("Cell")}&lt;/td>;
+                  })}
+                &lt;/tr>
+              );
+            })}
+          &lt;/tbody>
+        &lt;/table>
+      &lt;/div>
+      &lt;div className="wrapper-pagination">
+        {/* displays the number of current page */}
+
+        &lt;div>
+          &lt;span>
+            Page{" "}
+            &lt;strong>
+              {pageIndex + 1} of {pageOptions.length}
+            &lt;/strong>{" "}
+          &lt;/span>
+
+          {/* displays the input to set the number of page to go */}
+
+          &lt;span>
+            | Go to page:{" "}
+            &lt;input
+              type="number"
+              defaultValue={pageIndex + 1}
+              onChange={(e) => {
+                const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0;
+                gotoPage(pageNumber);
+              }}
+              style={{ width: "50px" }}
+            >&lt;/input>
+          &lt;/span>
+
+          {/* displays the select with number of rows per page  */}
+
+          &lt;select value={pageSize} onChange={(e) => setPageSize(Number(e.target.value))}>
+            {[10, 25, 50].map((pageSize) => (
+              &lt;option key={pageSize} value={pageSize}>
+                Show {pageSize}
+              &lt;/option>
+            ))}
+          &lt;/select>
+        &lt;/div>
+
+        {/* displays the btn to go to the first page */}
+        &lt;button className="btn-skipfirst" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          {"&lt;&lt;"}
+        &lt;/button>
+
+        {/* displays the btns to navigate between the pages */}
+        &lt;button className="btn-prev" onClick={() => previousPage()} disabled={!canPreviousPage}>
+          Previous
+        &lt;/button>
+        &lt;button className="btn-next" onClick={() => nextPage()} disabled={!canNextPage}>
+          Next
+        &lt;/button>
+
+        {/* displays the btn to go to the last page */}
+        &lt;button className="btn-skiplast" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          {">>"}
+        &lt;/button>
+      &lt;/div>
+    &lt;/>
+  );
+}
+
+Table.propTypes={
+  columns: propTypes.arrayOf(
+    propTypes.shape({
+      Header: propTypes.string,
+      columns: propTypes.arrayOf(
+        propTypes.shape({
+          Header:propTypes.string,
+          accessor: propTypes.string
+        })
+      ),
+    })
+  ).isRequired,
+  data:propTypes.arrayOf(
+    propTypes.shape({
+      firstName: propTypes.string,
+      lastName: propTypes.string,
+      streetName: propTypes.string,
+      cityName: propTypes.string,
+      zipCode:propTypes.string,
+      selectDateBirth: propTypes.string,
+      selectStartDate: propTypes.string,
+      selectDepartment: propTypes.shape({
+        label:propTypes.string,
+        value:propTypes.string
+      }),
+      selectStates: propTypes.shape({
+        label:propTypes.string,
+        value:propTypes.string
+      })
+    })
+  ).isRequired,
+}
+export default Table;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a> on Mon Oct 03 2022 13:07:37 GMT+0200 (heure d’été d’Europe centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>components/Dropdown/Dropdown.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#CreateEmployee">CreateEmployee</a></li><li><a href="global.html#CurrentEmployees">CurrentEmployees</a></li><li><a href="global.html#Datepicker">Datepicker</a></li><li><a href="global.html#Dropdown">Dropdown</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#Form">Form</a></li><li><a href="global.html#GlobalFilter">GlobalFilter</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#helperAddEmployee">helperAddEmployee</a></li><li><a href="global.html#reducerAddEmployee">reducerAddEmployee</a></li><li><a href="global.html#Table">Table</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">components/Dropdown/Dropdown.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import { Controller } from "react-hook-form";
+import Select from "react-select";
+import "../Form/form.css";
+import propTypes from "prop-types";
+
+/**
+ * Displays the dropdown in the department and states input fields
+ * @param {String} title Title of the field
+ * @param {String} name Name of the input field to control
+ * @param {Object} control
+ * @param {Object} errors
+ * @param {Object[]} data Data contains the states or departments list
+ * @param {String} data[].label Data contains the given label (appear in the input field)
+ * @param {String} data[].value Data contains the given value
+ * @returns {JSX}
+ */
+const Dropdown = ({ title, name, control, errors, data }) => {
+  return (
+    &lt;>
+      &lt;div className="wrapper-dropdown">
+        &lt;div className="title">
+          {" "}
+          &lt;p>{title}&lt;/p>
+        &lt;/div>
+        &lt;Controller
+          name={name}
+          control={control}
+          defaultValue=""
+          rules={{ required: "This field is required", minLength: { message: "Min length is 4 characters", test: "ok" } }}
+          render={({ field }) => (
+            &lt;Select
+              menuPortalTarget={document.querySelector("body")}
+              placeholder="Please select"
+              styles={{
+                placeholder: () => ({
+                  textAlign: "left",
+                  opacity: "0.6",
+                  marginTop: "30px",
+                }),
+
+                valueContainer: () => ({
+                  maxHeight: "80px",
+                  display: "flex",
+                }),
+
+                indicatorSeparator: () => ({
+                  border: "none",
+                }),
+                dropdownIndicator: (provided) => ({
+                  ...provided,
+                  "&amp;:hover": {
+                    color: "#4F5C1C",
+                  },
+                  color: "#4F5C1C",
+                  marginTop: "30px",
+                }),
+                singleValue: () => ({
+                  textAlign: "left",
+                  marginTop: "30px",
+                }),
+                container: () => ({
+                  display: "flex",
+                  justifyContent: "center",
+                }),
+
+                control: (provided, state) => ({
+                  ...provided,
+                  "&amp;:hover": {
+                    borderColor: "#4F5C1C",
+                  },
+                  boxShadow: "none",
+                  border: "none",
+                  backgroundColor: "",
+                  borderBottom: "2px",
+                  borderBottomStyle: "solid",
+                  borderImage: "linear-gradient(45deg, #3F3D56,#dbbc00) 1",
+                  width: "60%",
+                  borderRadius: "none",
+                  minHeight: "32px",
+                  position: "relative",
+                  marginTop: "-20px",
+                }),
+                menu: (provided, state) => ({
+                  ...provided,
+                  border: "none",
+                  boxShadow: "none",
+                }),
+                menuList: (provided, state) => ({
+                  ...provided,
+                  "::-webkit-scrollbar": {
+                    width: "4px",
+                    height: "0px",
+                  },
+                  "::-webkit-scrollbar-track": {
+                    background: "#f1f1f1",
+                  },
+                  "::-webkit-scrollbar-thumb": {
+                    background: "#888",
+                  },
+                  "::-webkit-scrollbar-thumb:hover": {
+                    background: "#555",
+                  },
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  backgroundColor: state.isFocused &amp;&amp; "#9BC200",
+                  color: state.isFocused &amp;&amp; "white",
+                }),
+              }}
+              options={data}
+              {...field}
+              label="Text field"
+            />
+          )}
+        />
+
+        &lt;div className="error">
+          {" "}
+          &lt;h4>{errors[name]?.message}&lt;/h4>
+        &lt;/div>
+      &lt;/div>
+    &lt;/>
+  );
+};
+
+Dropdown.propTypes = {
+  title: propTypes.string.isRequired,
+  name: propTypes.string.isRequired,
+  control: propTypes.object.isRequired,
+  errors: propTypes.shape({
+    firstName: propTypes.shape({
+      type: propTypes.string,
+      message: propTypes.string,
+    }),
+    lastName: propTypes.shape({
+      type: propTypes.string,
+      message: propTypes.string,
+    }),
+    selectDateBirth: propTypes.shape({
+      type: propTypes.string,
+      message: propTypes.string,
+    }),
+    selectDepartment: propTypes.shape({
+      type: propTypes.string,
+      message: propTypes.string,
+    }),
+    SelectStartDate: propTypes.shape({
+      type: propTypes.string,
+      message: propTypes.string,
+    }),
+    selectStates: propTypes.shape({
+      type: propTypes.string,
+      message: propTypes.string,
+    }),
+    streetName: propTypes.shape({
+      type: propTypes.string,
+      message: propTypes.string,
+    }),
+    zipCode: propTypes.shape({
+      type: propTypes.string,
+      message: propTypes.string,
+    }),
+  }),
+  data: propTypes.arrayOf(
+    propTypes.shape({
+      label: propTypes.string,
+      value: propTypes.string,
+    })
+  ).isRequired,
+};
+export default Dropdown;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a> on Mon Oct 03 2022 13:07:37 GMT+0200 (heure d’été d’Europe centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

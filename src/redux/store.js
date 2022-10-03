@@ -2,7 +2,6 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import reducerAddEmployee from "./employee/reducerEmployee"
 
-
  const rootReducer =  combineReducers({
     employeeData: reducerAddEmployee
  })

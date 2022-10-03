@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>components/Form/Form.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#CreateEmployee">CreateEmployee</a></li><li><a href="global.html#CurrentEmployees">CurrentEmployees</a></li><li><a href="global.html#Datepicker">Datepicker</a></li><li><a href="global.html#Dropdown">Dropdown</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#Form">Form</a></li><li><a href="global.html#GlobalFilter">GlobalFilter</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#helperAddEmployee">helperAddEmployee</a></li><li><a href="global.html#reducerAddEmployee">reducerAddEmployee</a></li><li><a href="global.html#Table">Table</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">components/Form/Form.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useSelector, useDispatch } from "react-redux";
+import { addEmployee } from "../../redux/employee/actionEmployee";
+import { states } from "../../data/states";
+import { departments } from "../../data/departments";
+import Datepicker from "../Date/Date";
+import Dropdown from "../Dropdown/Dropdown";
+import Modal from "react-modal-oth";
+import icon from "react-modal-oth/dist/assets/icon.svg";
+import close_icon from "react-modal-oth/dist/assets/close.svg";
+import icon_form from "../../assets/test.svg";
+import "../Form/form.css";
+import "react-datepicker/dist/react-datepicker.css";
+import propTypes from "prop-types";
+
+/**
+ * Displays the form to create a new employee
+ * @returns {JSX}
+ */
+const Form = () => {
+  //Use state to manage the modal's appears
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const {
+    control,
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  //const state = useSelector((state) => console.log(state));
+  const dispatch = useDispatch();
+
+  /**
+   * Adds employee on submit
+   * @param {Object} data Data from form's inputs
+   * @param {String} data.firstName First name of employee
+   * @param {String} data.lasttName Last name of employee
+   * @param {String} data.streetName Street name of employee's address
+   * @param {String} data.cityName City of employee's address
+   * @param {String} data.zipCode Zip code of employee's address
+   * @param {Object} data.selectDateBirth Date of birth of employee
+   * @param {Object} data.selectStartDate Start day of employee
+   * @param {Object} data.selectDepartment Department of employee
+   * @param {String} data.selectDepartment.label Name of department
+   * @param {String} data.selectDepartment.value Value of department
+   * @param {Object} data.selectStates State of employee
+   * @param {String} data.selectStates.label Name of state
+   * @param {String} data.selectStates.value Value of state
+   */
+  const onSubmit = (data) => {
+    if (data) {
+      dispatch(addEmployee(data));
+      setModalIsOpen(true);
+    }
+  };
+
+  return (
+    &lt;>
+      {" "}
+      {/*if modal is open set as true , modal is shown, otherwise back to form */}
+      {modalIsOpen ? (
+        &lt;Modal icon={icon} closeIcon={close_icon} show={modalIsOpen} setShow={setModalIsOpen} title={"Well done!"} text={"Employee was successfully created!"} />
+      ) : (
+        &lt;div className="testform">
+          &lt;div className="wrapper-form">
+            &lt;form className="form" onSubmit={handleSubmit(onSubmit)}>
+              {/* First Name */}
+              &lt;div className="image">
+                &lt;h2>Create Employee&lt;/h2>
+                &lt;img src={icon_form} alt="">&lt;/img>
+              &lt;/div>
+              &lt;div className="wrapper-input">
+                &lt;label htmlFor="first-name">First Name&lt;/label>
+                &lt;input className="first-name" {...register("firstName", { required: "This field is required", minLength: { value: 4, message: "Min length is 4 characters" } })} />
+                &lt;p>{errors.firstName?.message}&lt;/p>
+              &lt;/div>
+              {/* Last Name */}
+
+              &lt;div className="wrapper-input">
+                &lt;label htmlFor="last-name">Last Name&lt;/label>
+                &lt;input className="last-name" {...register("lastName", { required: "This field is required", minLength: { value: 4, message: "Min length is 4 characters" } })} />
+                &lt;p>{errors.lastName?.message}&lt;/p>
+              &lt;/div>
+              {/* Date of Birth */}
+
+              &lt;Datepicker title={"Date of Birth"} name={"selectDateBirth"} control={control} errors={errors} />
+
+              {/* Start date */}
+
+              &lt;Datepicker title={"Start Date"} name={"selectStartDate"} control={control} errors={errors} />
+              {/* Dropdown departments*/}
+
+              &lt;Dropdown title={"Department"} name={"selectDepartment"} control={control} errors={errors} data={departments} />
+
+              {/* Title*/}
+              &lt;h3>Address&lt;/h3>
+
+              {/* Street*/}
+              &lt;div className="wrapper-input">
+                &lt;label htmlFor="street-name">Street&lt;/label>
+                &lt;input className="street-name" {...register("streetName", { required: "This field is required", minLength: { value: 4, message: "Min length is 4 characters" } })} />
+                &lt;p>{errors.streetName?.message}&lt;/p>
+              &lt;/div>
+              {/* City*/}
+              &lt;div className="wrapper-input">
+                &lt;label htmlFor="city-name">City&lt;/label>
+                &lt;input className="city-name" {...register("cityName", { required: "This field is required", minLength: { value: 4, message: "Min length is 4 characters" } })} />
+                &lt;p>{errors.cityName?.message}&lt;/p>
+              &lt;/div>
+              {/* Zip Code*/}
+              &lt;div className="wrapper-input">
+                &lt;label htmlFor="zip">Zip Code&lt;/label>
+                &lt;input className="zip" {...register("zipCode", { required: "This field is required", minLength: { value: 4, message: "Min length is 4 characters" } })} />
+                &lt;p>{errors.zipCode?.message}&lt;/p>
+              &lt;/div>
+
+              {/* Dropdown states*/}
+
+              &lt;Dropdown title={"States"} name={"selectStates"} control={control} errors={errors} data={states} />
+
+              &lt;div className="wrapper-btn">
+                &lt;input
+                  type="submit"
+                  className="btn"
+                  onClick={() => {
+                    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+                  }}
+                />
+              &lt;/div>
+            &lt;/form>
+          &lt;/div>
+        &lt;/div>
+      )}
+    &lt;/>
+  );
+};
+
+export default Form;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a> on Mon Oct 03 2022 13:07:37 GMT+0200 (heure d’été d’Europe centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

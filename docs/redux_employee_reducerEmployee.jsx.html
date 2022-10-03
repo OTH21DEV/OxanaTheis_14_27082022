@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>redux/employee/reducerEmployee.jsx - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#CreateEmployee">CreateEmployee</a></li><li><a href="global.html#CurrentEmployees">CurrentEmployees</a></li><li><a href="global.html#Datepicker">Datepicker</a></li><li><a href="global.html#Dropdown">Dropdown</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#Form">Form</a></li><li><a href="global.html#GlobalFilter">GlobalFilter</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#helperAddEmployee">helperAddEmployee</a></li><li><a href="global.html#reducerAddEmployee">reducerAddEmployee</a></li><li><a href="global.html#Table">Table</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">redux/employee/reducerEmployee.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { ADD_EMPLOYEE } from "./type";
+import moment from "moment";
+import propTypes from "prop-types";
+
+const initialState = {
+  employees: [],
+};
+
+/**
+ * Helper function aiming to take the employee data
+ * @param {Object} action
+ * @returns {Object}
+ */
+const helperAddEmployee = (action) => {
+  return {
+    firstName: action.payload.firstName,
+    lastName: action.payload.lastName,
+    dateOfBirth: moment(action.payload.selectDateBirth).format("DD/MM/yyyy"),
+    startDate: moment(action.payload.selectStartDate).format("DD/MM/yyyy"),
+    department: action.payload.selectDepartment,
+    street: action.payload.streetName,
+    city: action.payload.cityName,
+    zipCode: action.payload.zipCode,
+    state: action.payload.selectStates,
+  };
+};
+
+/**
+ * Reducer for employee action (addEmployee)
+ * @param {Object} state State is equal to initial state ([])
+ * @param {Object} action Action add employee
+ * @param {String} action.type type of action (addEmployee)
+ * @param {Object} action.payload contains employee information received from form'inputs after submit
+ * @param {String} action.payload.firstName contains employee first name received from form input after submit
+ * @param {String} action.payload.lastName contains employee last name received from form input after submit
+ * @param {String} action.payload.selectDateBirth contains employee date of birth received from form input after submit
+ * @param {String} action.payload.selectStartDate contains employee start date received from form input after submit
+ * @param {Object} action.payload.selectDepartment contains employee department received from form input after submit
+ * @param {String} action.payload.selectDepartment.label contains employee department label
+ * @param {String} action.payload.selectDepartment.value contains employee department value
+ * @param {String} action.payload.streetName contains employee street name received from form input after submit
+ * @param {String} action.payload.cityName contains employee city name received from form input after submit
+ * @param {String} action.payload.zipCode contains employee zip code received from form input after submit
+ * @param {Object} action.payload.selectStates contains employee state received from form input after submit
+ * @param {String} action.payload.selectStates.label contains employee state label
+ * @param {String} action.payload.selectStates.value contains employee state value
+ * @returns {Object} new State
+ */
+const reducerAddEmployee = (state = initialState.employees, action) => {
+  /*when component is mounting we check if there is a data in local storage , if so we take it from there and 
+attribute  to state
+*/
+  if (localStorage.getItem("allEmployees")) {
+    state = JSON.parse(localStorage.getItem("allEmployees"));
+  }
+
+  switch (action.type) {
+    case ADD_EMPLOYEE:
+      //Creating the new state with received data
+      state = [...state, helperAddEmployee(action)];
+      localStorage.setItem("allEmployees", JSON.stringify(state));
+      return state;
+
+    default:
+      return state;
+  }
+};
+
+reducerAddEmployee.propTypes = {
+  state: propTypes.object.isRequired,
+  action: propTypes.shape({
+    type: propTypes.string.isRequired,
+    payload: propTypes.shape({
+      firstName: propTypes.string,
+      lastName: propTypes.string,
+      selectDateBirth: propTypes.string,
+      selectStartDate: propTypes.string,
+      selectDepartment: propTypes.shape({
+        label: propTypes.string,
+        value: propTypes.string,
+      }),
+      streetName: propTypes.string,
+      cityName: propTypes.string,
+      zipCode: propTypes.string,
+      selectStates: propTypes.shape({
+        label: propTypes.string,
+        value: propTypes.string,
+      }),
+    }),
+  }).isRequired,
+};
+export default reducerAddEmployee;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a> on Mon Oct 03 2022 13:07:37 GMT+0200 (heure d’été d’Europe centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

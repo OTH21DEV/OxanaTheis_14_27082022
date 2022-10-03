@@ -10,7 +10,7 @@ import propTypes from "prop-types";
  * @param {String} name Name of the input field to control
  * @param {Object} control
  * @param {Object} errors
- * @param {Array} data Data contains the states or departments list
+ * @param {Object[]} data Data contains the states or departments list
  * @param {String} data[].label Data contains the given label (appear in the input field)
  * @param {String} data[].value Data contains the given value
  * @returns {JSX}

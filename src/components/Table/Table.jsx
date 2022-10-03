@@ -2,12 +2,13 @@ import React from "react";
 import GlobalFilter from "../GlobalFilter/GlobalFilter";
 import { useTable, useSortBy, usePagination, useGlobalFilter } from "react-table";
 import "./table.css";
+import propTypes from "prop-types";
 
 /**
  * Displays the table of current employees
- * @param {Array} data Data from form's inputs (state Redux)
+ * @param {Object[]} data Data from form's inputs (state Redux)
  * @param {String} data[].firstName First name of employee
- * @param {String} data[].lasttName Last name of employee
+ * @param {String} data[].lastName Last name of employee
  * @param {String} data[].streetName Street name of employee's address
  * @param {String} data[].cityName City of employee's address
  * @param {String} data[].zipCode Zip code of employee's address
@@ -19,9 +20,9 @@ import "./table.css";
  * @param {Object} data[].selectStates State of employee
  * @param {String} data[].selectStates.label Name of state
  * @param {String} data[].selectStates.value Value of state
- * @param {Array} columns Name of form's columns
+ * @param {Object[]} columns Name of form's columns
  * @param {String} columns[].Header First group name header of form's columns
- * @param {Array} columns[].columns Second group name header of form's columns
+ * @param {Object[]} columns[].columns Second group name header of form's columns
  * @param {String} columns[].columns.Header Columns name of second group name header
  * @param {String} columns[].columns.accessor
  * @returns {JSX}
@@ -145,4 +146,36 @@ function Table({ columns, data }) {
   );
 }
 
+Table.propTypes={
+  columns: propTypes.arrayOf(
+    propTypes.shape({
+      Header: propTypes.string,
+      columns: propTypes.arrayOf(
+        propTypes.shape({
+          Header:propTypes.string,
+          accessor: propTypes.string
+        })
+      ),
+    })
+  ).isRequired,
+  data:propTypes.arrayOf(
+    propTypes.shape({
+      firstName: propTypes.string,
+      lastName: propTypes.string,
+      streetName: propTypes.string,
+      cityName: propTypes.string,
+      zipCode:propTypes.string,
+      selectDateBirth: propTypes.string,
+      selectStartDate: propTypes.string,
+      selectDepartment: propTypes.shape({
+        label:propTypes.string,
+        value:propTypes.string
+      }),
+      selectStates: propTypes.shape({
+        label:propTypes.string,
+        value:propTypes.string
+      })
+    })
+  ).isRequired,
+}
 export default Table;

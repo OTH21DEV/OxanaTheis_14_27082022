@@ -4,7 +4,10 @@ import Table from "../../components/Table/Table";
 import Footer from "../../components/Footer/Footer";
 import { useSelector } from "react-redux";
 
-
+/**
+ * Displays the page with the table of current employees
+ * @returns {JSX}
+ */
 const CurrentEmployees = () => {
   const state = useSelector((state) => state.employeeData);
   console.log(state);
