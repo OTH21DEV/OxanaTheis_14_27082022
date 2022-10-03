@@ -33,12 +33,12 @@
   right: 0;
 }
 
-@media all and (min-width: 375px) and (max-width: 800px) {
+@media all and (min-width: 360px) and (max-width: 800px) {
   .header {
     justify-content: unset;
   }
 }
-@media all and (min-width: 375px) and (max-width: 600px) {
+@media all and (min-width: 360px) and (max-width: 600px) {
   .header-nav {
     display: flex;
     flex-direction: column;
