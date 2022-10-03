@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route,HashRouter } from "react-router-dom";
 import "./App.css";
 import "../src/styles/index.css";
 import CreateEmployee from "./pages/CreateEmployee/CreateEmployee";
@@ -10,12 +10,12 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <Router>
+        <HashRouter>
           <Routes>
             <Route exact path="/" element={<CreateEmployee />}></Route>
             <Route path="/allemployees" element={<CurrentEmployees/>}></Route>
           </Routes>
-        </Router>
+        </HashRouter>
       </div>
     </Provider>
   );

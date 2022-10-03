@@ -1,5 +1,6 @@
 {
   "homepage": "http://othdev21.github.io/OxanaTheis_14_27082022",
+  "name": "p14_wealth_health_hrnet",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
