@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/OxanaTheis_14_27082022/static/css/main.73b08064.css",
+    "main.js": "/OxanaTheis_14_27082022/static/js/main.a43ff1af.js",
+    "static/js/787.7efd31bd.chunk.js": "/OxanaTheis_14_27082022/static/js/787.7efd31bd.chunk.js",
+    "static/media/logo1.png": "/OxanaTheis_14_27082022/static/media/logo1.65c19beb467913b8e8d0.png",
+    "static/media/icon.svg": "/OxanaTheis_14_27082022/static/media/icon.5642ddc490161dd9fb3933fc946e04c0.svg",
+    "static/media/test.svg": "/OxanaTheis_14_27082022/static/media/test.be392efd0e0637b491d9d25e1921dac1.svg",
+    "index.html": "/OxanaTheis_14_27082022/index.html",
+    "static/media/close.svg": "/OxanaTheis_14_27082022/static/media/close.aac73cf0d96d956a64823afe21da95f9.svg",
+    "main.73b08064.css.map": "/OxanaTheis_14_27082022/static/css/main.73b08064.css.map",
+    "main.a43ff1af.js.map": "/OxanaTheis_14_27082022/static/js/main.a43ff1af.js.map",
+    "787.7efd31bd.chunk.js.map": "/OxanaTheis_14_27082022/static/js/787.7efd31bd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.73b08064.css",
+    "static/js/main.a43ff1af.js"
+  ]
+}
