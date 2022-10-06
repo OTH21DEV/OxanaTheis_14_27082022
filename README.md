@@ -17,9 +17,14 @@ The purpose of the project was to leave the old version of the application made 
 - Creation and publishing the created React component in npm https://www.npmjs.com/package/react-modal-oth
 
 
+## Demo version
+
+https://oth21dev.github.io/OxanaTheis_14_27082022/
+
+
 ## Local installation
 
-- git clone https://github.com/OTH21DEV/OxanaTheis_13_03082022.git
+- git clone https://github.com/OTH21DEV/OxanaTheis_14_27082022.git
 - npm install
 
 ## Launch locally
@@ -39,6 +44,7 @@ The purpose of the project was to leave the old version of the application made 
 - Javascript
 - React
 - Redux
+- Plugins React
 
 ## Tools:
 
