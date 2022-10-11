@@ -9,7 +9,7 @@ import Dropdown from "../Dropdown/Dropdown";
 import Modal from "react-modal-oth";
 import icon from "react-modal-oth/dist/assets/icon.svg";
 import close_icon from "react-modal-oth/dist/assets/close.svg";
-import icon_form from "../../assets/test.svg";
+import icon_form from "../../assets/create-icon.svg";
 import "../Form/form.css";
 import "react-datepicker/dist/react-datepicker.css";
 import propTypes from "prop-types";
